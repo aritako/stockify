@@ -6,7 +6,7 @@ import { Link } from 'expo-router';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Stockify</Text>
+      <Text className="text-2xl">Stockify</Text>
       <Link href="/profile">Go To Profile</Link>
     </View>
   );
