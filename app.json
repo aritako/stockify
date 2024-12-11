@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "react-native-project",
-    "slug": "react-native-project",
+    "name": "Stockify",
+    "slug": "stockify",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "stockify",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
