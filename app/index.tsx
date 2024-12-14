@@ -7,7 +7,7 @@ export default function App() {
   return (
     <View className="flex-1 items-center justify-center bg-white">
       <Text className="text-2xl font-pbold">Stockify</Text>
-      <Link href="/profile">Go To Profile</Link>
+      <Link href="/home">Go To Home</Link>
     </View>
   );
 }
