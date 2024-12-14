@@ -3,7 +3,7 @@ import React from 'react'
 import { Tabs, Redirect } from 'expo-router'
 import { icons } from '../../constants'
 import TabIcon from '../../components/(tabs)/tab_icon'
-
+import { TabsConfig, TabConfig } from '../../constants/tabs_config'
 const TabsLayout = () => {
   return (
     <>
@@ -12,19 +12,25 @@ const TabsLayout = () => {
           tabBarShowLabel: false,
         }}
       >
-        <Tabs.Screen name="home" options={{
-          title: 'Home',
-          headerShown: false,
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon
-              icon={icons.home}
-              color={color}
-              name="Home"
-              focused={focused}
-            />
-          ),
-        }} />
+        {TabsConfig.map((tab: TabConfig) => (
+          <Tabs.Screen key={tab.name} name={tab.name} options={{
+            title: tab.title,
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={tab.icon}
+                color={color}
+                name={tab.title}
+                focused={focused}
+              />
+            ),
+          }} />
+        ))}
+
+
       </Tabs>
+
+
     </>
   )
 }

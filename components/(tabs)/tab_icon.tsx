@@ -10,12 +10,12 @@ interface TabIconProps {
 
 const TabIcon: React.FC<TabIconProps> = ({ icon, color, name, focused }) => {
   return (
-    <View className="items-center justify-center gap-2">
+    <View className="items-center justify-center">
       <Image
         source={icon}
         resizeMode="contain"
         tintColor={color}
-        className="w-2 h-2"
+        style={{ width: 20, height: 20 }}
       />
       <Text className={`${focused ? 'font-psemibold' : 'font-pregular'} text-xs`}>
         {name}
