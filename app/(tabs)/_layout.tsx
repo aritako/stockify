@@ -10,6 +10,13 @@ const TabsLayout = () => {
       <Tabs
         screenOptions={{
           tabBarShowLabel: false,
+          tabBarActiveTintColor: '#FFA001',
+          tabBarInactiveTintColor: '#CDCDE0',
+          tabBarStyle: {
+            backgroundColor: '#161522',
+            borderTopWidth: 1,
+            borderTopColor: '#232533',
+          }
         }}
       >
         {TabsConfig.map((tab: TabConfig) => (

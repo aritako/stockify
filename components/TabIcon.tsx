@@ -17,7 +17,7 @@ const TabIcon: React.FC<TabIconProps> = ({ icon, color, name, focused }) => {
         tintColor={color}
         style={{ width: 20, height: 20 }}
       />
-      <Text className={`${focused ? 'font-psemibold' : 'font-pregular'} text-xs`}>
+      <Text className={`${focused ? 'font-psemibold' : 'font-pregular'} text-xs`} style = {{color: color}}>
         {name}
       </Text>
     </View>
