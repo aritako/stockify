@@ -2,7 +2,7 @@ import { Text, View, Image } from 'react-native'
 import React from 'react'
 import { Tabs, Redirect } from 'expo-router'
 import { icons } from '../../constants'
-import TabIcon from '../../components/(tabs)/tab_icon'
+import TabIcon from '../../components/TabIcon'
 import { TabsConfig, TabConfig } from '../../constants/tabs_config'
 const TabsLayout = () => {
   return (
