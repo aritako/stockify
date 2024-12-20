@@ -2,6 +2,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import React from 'react';
 import { Image, ScrollView, View, Text } from 'react-native';
 import { images } from '@/constants';
+import CustomButton from '@/components/CustomButton';
+import { StatusBar } from 'expo-status-bar';
+
 export default function App() {
   return (
     <SafeAreaView className="bg-primary h-full">
@@ -32,8 +35,14 @@ export default function App() {
           <Text className="text-sm font-pregular text-gray-100 mt-7">
             Where creativity meets innovation.
           </Text>
+          <CustomButton
+            title="Continue with Email"
+            handlePress={() => {}}
+            containerStyle="mt-7 w-full"
+          />
         </View>
       </ScrollView>
+      <StatusBar backgroundColor="#161622" style="light" />
     </SafeAreaView>
   );
 }
