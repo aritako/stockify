@@ -14,6 +14,10 @@ import { LoginFormSchema } from '@/models/AuthModels'
 const SignIn: React.FC = () => {
   const { control, handleSubmit, formState: { errors } } = useForm({
     resolver: zodResolver(LoginFormSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const onSubmit = (data: any) => {
@@ -37,7 +41,6 @@ const SignIn: React.FC = () => {
             render={({ field: { onChange, onBlur, value } }) => (
               <FormField
                 title="Email"
-                placeholder="Enter your email"
                 value={value}
                 onChange={onChange}
                 onBlur={onBlur}
@@ -51,7 +54,6 @@ const SignIn: React.FC = () => {
             render={({ field: { onChange, onBlur, value } }) => (
               <FormField
                 title="Password"
-                placeholder="Enter your password"
                 value={value}
                 onChange={onChange}
                 onBlur={onBlur}
