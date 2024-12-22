@@ -2,18 +2,22 @@ import { Image, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '../../constants'
+import { Controller, useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+
 
 import FormField from '@/components/FormField'
 import CustomButton from '@/components/CustomButton'
 import { Link } from 'expo-router'
+import { LoginFormSchema } from '@/models/AuthModels'
+
 const SignIn: React.FC = () => {
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
+  const { control, handleSubmit, formState: { errors } } = useForm({
+    resolver: zodResolver(LoginFormSchema),
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const submit = () => {
-
+  const onSubmit = (data: any) => {
+    console.log("Form Data:", data)
   }
   return (
     <SafeAreaView className="bg-primary h-full">
@@ -27,20 +31,39 @@ const SignIn: React.FC = () => {
           <Text className="text-2xl text-white text-semibold mt-10 font-psemibold">
             Log in to Aora
           </Text>
-          <FormField
-            title="Email"
-            value={form.email}
-            className="mt-5"
+          <Controller
+            name="email"
+            control={control}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <FormField
+                title="Email"
+                placeholder="Enter your email"
+                value={value}
+                onChange={onChange}
+                onBlur={onBlur}
+                error={errors.email?.message as string}
+              />
+            )}
           />
-          <FormField
-            title="Password"
-            value={form.password}
-            className="mt-5"
-            toggleEye={true}
+          <Controller
+            name="password"
+            control={control}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <FormField
+                title="Password"
+                placeholder="Enter your password"
+                value={value}
+                onChange={onChange}
+                onBlur={onBlur}
+                toggleEye={true}
+                error={errors.password?.message as string}
+                className="mt-5"
+              />
+            )}
           />
           <CustomButton
             title="Sign In"
-            handlePress={submit}
+            handlePress={handleSubmit(onSubmit)}
             containerStyle="mt-7"
             isLoading={isSubmitting}
           />
