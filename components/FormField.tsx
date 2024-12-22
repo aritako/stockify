@@ -4,14 +4,16 @@ import { Image } from 'react-native'
 import { icons } from '@/constants/'
 interface FormFieldProps {
   title: string
-  value: string
+  value?: string
   placeholder?: string
-  handleChangeText: (text: string) => void
+  handleChangeText?: (text: string) => void
   className?: string
   inputStyle?: string
+  error?: string
+  toggleEye?: boolean
 }
 
-const FormField: React.FC<FormFieldProps> = ({ title, value, placeholder, handleChangeText, className, ...props }) => {
+const FormField: React.FC<FormFieldProps> = ({ title, value, placeholder, handleChangeText, className, toggleEye = false, ...props }) => {
   const [showPassword, setShowPassword] = useState(false)
   return (
     <View className={`space-y-2 ${className}`}>
@@ -23,9 +25,9 @@ const FormField: React.FC<FormFieldProps> = ({ title, value, placeholder, handle
           placeholder={placeholder}
           placeholderTextColor={'#7B7B8B'}
           onChangeText={handleChangeText}
-          secureTextEntry={title === 'Password' && !showPassword}
+          secureTextEntry={toggleEye && !showPassword}
         />
-        {title === 'Password' && (
+        {toggleEye && (
           <TouchableOpacity onPress={() => setShowPassword(!showPassword)} className="absolute right-4 top-4">
             <Image
               source={!showPassword ? icons.eye : icons.eyeHide}

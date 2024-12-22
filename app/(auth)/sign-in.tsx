@@ -30,14 +30,14 @@ const SignIn: React.FC = () => {
           <FormField
             title="Email"
             value={form.email}
-            handleChangeText={(value: string) => setForm({ ...form, email: value })}
             className="mt-5"
           />
           <FormField
             title="Password"
             value={form.password}
-            handleChangeText={(value: string) => setForm({ ...form, password: value })}
-            className="mt-5" />
+            className="mt-5"
+            toggleEye={true}
+          />
           <CustomButton
             title="Sign In"
             handlePress={submit}
