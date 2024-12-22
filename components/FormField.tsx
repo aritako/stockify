@@ -9,7 +9,7 @@ interface FormFieldProps {
   placeholder?: string
   onChange: (text: string) => void
   onBlur: () => void
-  className?: string
+  containerStyle?: string
   inputStyle?: string
   error?: string
   toggleEye?: boolean
@@ -21,18 +21,19 @@ const FormField: React.FC<FormFieldProps> = ({
   placeholder,
   onChange,
   onBlur,
-  className,
   error,
   toggleEye = false,
+  containerStyle,
+  inputStyle,
 }) => {
   const [showPassword, setShowPassword] = useState(false)
   return (
-    <View className={`space-y-2 ${className}`}>
+    <View className={`space-y-2 ${containerStyle}`}>
       <Text className="text-base text-gray-100 font-pmedium">{title}</Text>
       <View className="flex-row items-center">
         <TextInput
           className={`flex-1 w-full text-white font-psemibold text-base border-2 border-black-200 h-16 p-4 bg-black-100 rounded-2xl ${error ? 'border-red-500' : ''
-            }`}
+            } ${inputStyle}`}
           placeholder={placeholder}
           placeholderTextColor="#7B7B8B"
           secureTextEntry={toggleEye && !showPassword}

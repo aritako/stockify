@@ -9,10 +9,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import FormField from '@/components/FormField'
 import CustomButton from '@/components/CustomButton'
 import { Link } from 'expo-router'
-import { LoginFormSchema } from '@/models/AuthModels'
+import { LoginForm, LoginFormSchema } from '@/models/AuthModels'
 
 const SignIn: React.FC = () => {
-  const { control, handleSubmit, formState: { errors } } = useForm({
+  const { control, handleSubmit, formState: { errors } } = useForm<LoginForm>({
     resolver: zodResolver(LoginFormSchema),
     defaultValues: {
       email: '',
@@ -59,7 +59,7 @@ const SignIn: React.FC = () => {
                 onBlur={onBlur}
                 toggleEye={true}
                 error={errors.password?.message as string}
-                className="mt-5"
+                containerStyle="mt-5"
               />
             )}
           />
