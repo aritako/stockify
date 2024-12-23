@@ -32,37 +32,38 @@ const SignIn: React.FC = () => {
             resizeMode="contain"
             style={{ width: 120, height: 35 }}
           />
-          <Text className="text-2xl text-white text-semibold mt-10 font-psemibold">
+          <Text className="text-2xl text-white text-semibold my-10 font-psemibold">
             Log in to Aora
           </Text>
-          <Controller
-            name="email"
-            control={control}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <FormField
-                title="Email"
-                value={value}
-                onChange={onChange}
-                onBlur={onBlur}
-                error={errors.email?.message as string}
-              />
-            )}
-          />
-          <Controller
-            name="password"
-            control={control}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <FormField
-                title="Password"
-                value={value}
-                onChange={onChange}
-                onBlur={onBlur}
-                toggleEye={true}
-                error={errors.password?.message as string}
-                containerStyle="mt-5"
-              />
-            )}
-          />
+          <View className="gap-4">
+            <Controller
+              name="email"
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <FormField
+                  title="Email"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  error={errors.email?.message as string}
+                />
+              )}
+            />
+            <Controller
+              name="password"
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <FormField
+                  title="Password"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  toggleEye={true}
+                  error={errors.password?.message as string}
+                />
+              )}
+            />
+          </View>
           <CustomButton
             title="Sign In"
             handlePress={handleSubmit(onSubmit)}
