@@ -8,6 +8,7 @@ interface SearchInputProps {
   placeholder?: string
   containerStyle?: string
   inputStyle?: string
+  handleChange?: (text: string) => void
 }
 
 const SearchInput: React.FC<SearchInputProps> = (

@@ -2,6 +2,7 @@ import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { images } from '@/constants'
 import SearchInput from './SearchInput'
+import LatestVideos from './LatestVideos'
 
 interface HomeHeaderProps {
   username: string
@@ -31,6 +32,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ username = 'User' }) => {
       <SearchInput
         placeholder="Search for a video topic"
       />
+      <LatestVideos />
     </View>
   )
 }
