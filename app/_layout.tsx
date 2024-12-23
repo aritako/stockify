@@ -3,6 +3,7 @@ import { Slot, SplashScreen, Stack } from 'expo-router';
 import { useFonts } from 'expo-font';
 import React, { useEffect } from 'react';
 import "../global.css";
+import GlobalProvider from '@/context/GlobalProvider';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -28,12 +29,14 @@ const RootLayout = () => {
 
   if (!fontsLoaded && !error) return null;
   return (
-    <Stack>
-      <Stack.Screen name="index" options={options} />
-      <Stack.Screen name="(auth)" options={options} />
-      <Stack.Screen name="(tabs)" options={options} />
-      {/* <Stack.Screen name="/search/[query]" options={options} /> */}
-    </Stack>
+    <GlobalProvider>
+      <Stack>
+        <Stack.Screen name="index" options={options} />
+        <Stack.Screen name="(auth)" options={options} />
+        <Stack.Screen name="(tabs)" options={options} />
+        {/* <Stack.Screen name="/search/[query]" options={options} /> */}
+      </Stack>
+    </GlobalProvider>
   );
 };
 
