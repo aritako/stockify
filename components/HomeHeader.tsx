@@ -29,7 +29,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ username = 'User' }) => {
         </View>
       </View>
       <SearchInput
-        placeholder="Search for your favorite songs"
+        placeholder="Search for a video topic"
       />
     </View>
   )

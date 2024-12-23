@@ -23,7 +23,7 @@ const SearchInput: React.FC<SearchInputProps> = (
       <TextInput
         className="text-base mt-0.5 text-white h-full w-full flex-1 font-pregular"
         value={value}
-        placeholder="Search a video topic"
+        placeholder={placeholder}
         placeholderTextColor="#CDCDE0"
       />
       <TouchableOpacity>
