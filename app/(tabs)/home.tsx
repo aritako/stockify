@@ -1,11 +1,23 @@
-import { View, Text } from 'react-native'
+import { View, Text, FlatList, Image } from 'react-native'
 import React from 'react'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import HomeHeader from '@/components/HomeHeader'
 
 const Home = () => {
   return (
-    <View>
-      <Text>Home</Text>
-    </View>
+    <SafeAreaView className="bg-primary h-full">
+      <FlatList
+        data={[{ $id: 1 }, { $id: 2 }, { $id: 3 }]}
+        keyExtractor={(item: { $id: number }) => item.$id.toString()}
+        renderItem={({ item }) => (
+          <Text className='text-3xl text-white'>{item.$id}</Text>
+        )}
+        ListHeaderComponent={() => (
+          <HomeHeader username="User" />
+        )}
+      >
+      </FlatList>
+    </SafeAreaView>
   )
 }
 
