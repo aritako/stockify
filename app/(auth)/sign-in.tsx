@@ -1,15 +1,16 @@
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Alert, Image, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '../../constants'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Link, router } from 'expo-router'
 
 
 import FormField from '@/components/FormField'
 import CustomButton from '@/components/CustomButton'
-import { Link } from 'expo-router'
 import { LoginForm, LoginFormSchema } from '@/models/AuthModels'
+import { signIn } from '@/lib/appwrite'
 
 const SignIn: React.FC = () => {
   const { control, handleSubmit, formState: { errors } } = useForm<LoginForm>({
@@ -20,8 +21,20 @@ const SignIn: React.FC = () => {
     },
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const onSubmit = (data: any) => {
-    console.log("Form Data:", data)
+  const onSubmit: (data: LoginForm) => void = async (data: LoginForm) => {
+    const { email, password } = data
+    setIsSubmitting(true)
+    try {
+      await signIn(email, password)
+      // if (!session) {
+      //   throw new Error("Account login failed.")
+      // }
+      router.replace('/home')
+    } catch (error) {
+      Alert.alert("Error", (error as Error)?.message)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
   return (
     <SafeAreaView className="bg-primary h-full">
