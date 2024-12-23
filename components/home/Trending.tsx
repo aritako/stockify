@@ -1,11 +1,21 @@
-import { View, Text } from 'react-native'
+import { View, Text, FlatList } from 'react-native'
 import React from 'react'
+import { Video } from '@/models/Videos'
 
-const Trending = () => {
+interface TrendingProps {
+  posts: Video[]
+}
+
+const Trending: React.FC<TrendingProps> = ({ posts }) => {
   return (
-    <View>
-      <Text>Trending</Text>
-    </View>
+    <FlatList
+      data={posts}
+      keyExtractor={(item: Video) => item.$id.toString()}
+      renderItem={({ item }) => (
+        <Text className='text-3xl text-white'>{item.$id.toString()}</Text>
+      )}
+      horizontal
+    />
   )
 }
 

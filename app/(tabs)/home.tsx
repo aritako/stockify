@@ -1,7 +1,7 @@
 import { View, Text, FlatList, Image } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import HomeHeader from '@/components/HomeHeader'
+import HomeHeader from '@/components/home/HomeHeader'
 import SearchInput from '@/components/SearchInput'
 
 const Home = () => {

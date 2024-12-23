@@ -1,8 +1,9 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
+
 import { images } from '@/constants'
-import SearchInput from './SearchInput'
-import LatestVideos from './home/LatestVideos'
+import SearchInput from '../SearchInput'
+import Trending from './Trending'
 
 interface HomeHeaderProps {
   username: string
@@ -32,7 +33,10 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ username = 'User' }) => {
       <SearchInput
         placeholder="Search for a video topic"
       />
-      <LatestVideos />
+      <Text className="text-gray-100 text-lg font-pregular mb-3">
+        Latest Videos
+      </Text>
+      <Trending posts={[{ $id: 1 }, { $id: 2 }, { $id: 3 }]} />
     </View>
   )
 }
