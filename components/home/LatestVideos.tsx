@@ -2,6 +2,11 @@ import { View, Text } from 'react-native'
 import React from 'react'
 
 import Trending from './Trending'
+import { Video } from '@/models/Videos'
+
+interface LatestVideosProps {
+  posts: Video[]
+}
 
 const LatestVideos = () => {
   return (
