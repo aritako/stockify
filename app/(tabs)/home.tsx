@@ -2,10 +2,11 @@ import { View, Text, FlatList, Image } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import HomeHeader from '@/components/HomeHeader'
+import SearchInput from '@/components/SearchInput'
 
 const Home = () => {
   return (
-    <SafeAreaView className="bg-primary h-full">
+    <SafeAreaView className="bg-primary">
       <FlatList
         data={[{ $id: 1 }, { $id: 2 }, { $id: 3 }]}
         keyExtractor={(item: { $id: number }) => item.$id.toString()}
@@ -17,6 +18,7 @@ const Home = () => {
         )}
       >
       </FlatList>
+
     </SafeAreaView>
   )
 }

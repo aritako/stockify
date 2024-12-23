@@ -1,6 +1,7 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { images } from '@/constants'
+import SearchInput from './SearchInput'
 
 interface HomeHeaderProps {
   username: string
@@ -27,6 +28,9 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ username = 'User' }) => {
           />
         </View>
       </View>
+      <SearchInput
+        placeholder="Search for your favorite songs"
+      />
     </View>
   )
 }
