@@ -6,29 +6,11 @@ import HomeHeader from '@/components/home/HomeHeader'
 import SearchInput from '@/components/SearchInput'
 import EmptyState from '@/components/home/EmptyState'
 import { getAllPosts } from '@/lib/appwrite'
-import { Video } from '@/models/Videos'
+import fetchData from '@/lib/fetchData'
 
 const Home: React.FC = () => {
-  const [data, setData] = useState<Video[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true)
-      try {
-        const response = await getAllPosts();
-        setData(response)
-      } catch (error) {
-        Alert.alert('Error', (error as Error).message)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    fetchData();
-  }, [])
-
   const [refreshing, setRefreshing] = useState(false)
-
+  const { data, isLoading } = fetchData(getAllPosts)
   const onRefresh = async () => {
     setRefreshing(true)
     // logic for recalling
