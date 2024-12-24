@@ -1,5 +1,6 @@
 import { Client, Account, ID, Avatars, Databases, Query } from 'react-native-appwrite';
 import { endpoint, platform, projectId, databaseId, userCollectionId, videoCollectionId, storageId } from '../constants/appwrite_config';
+import { Video } from '@/models/Videos';
 
 // Init your React Native SDK
 const client = new Client();
@@ -80,7 +81,7 @@ export async function getCurrentUser() {
   }
 }
 
-export async function getAllPosts() {
+export async function getAllPosts(): Promise<Video[]> {
   try {
     const posts = await databases.listDocuments(
       databaseId,
@@ -89,7 +90,7 @@ export async function getAllPosts() {
     if (!posts) {
       throw new Error("Posts not found.")
     }
-    return posts.documents
+    return posts.documents as Video[]
   } catch (error) {
     throw new Error(String(error))
   }

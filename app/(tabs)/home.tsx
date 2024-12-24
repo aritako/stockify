@@ -1,11 +1,34 @@
-import { View, Text, FlatList, Image, RefreshControl } from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, FlatList, Image, RefreshControl, Alert } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
+
 import HomeHeader from '@/components/home/HomeHeader'
 import SearchInput from '@/components/SearchInput'
 import EmptyState from '@/components/home/EmptyState'
+import { getAllPosts } from '@/lib/appwrite'
+import { Video } from '@/models/Videos'
 
 const Home: React.FC = () => {
+  const [data, setData] = useState<Video[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true)
+      try {
+        const response = await getAllPosts();
+        setData(response)
+      } catch (error) {
+        Alert.alert('Error', (error as Error).message)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    fetchData();
+  }, [])
+
+  console.log("Hello World!", data)
+
   const [refreshing, setRefreshing] = useState(false)
 
   const onRefresh = async () => {
@@ -35,7 +58,6 @@ const Home: React.FC = () => {
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       >
       </FlatList>
-
     </SafeAreaView>
   )
 }
