@@ -7,6 +7,8 @@ import SearchInput from '@/components/SearchInput'
 import EmptyState from '@/components/home/EmptyState'
 import { getAllPosts } from '@/lib/appwrite'
 import fetchData from '@/lib/fetchData'
+import VideoCard from '@/components/VideoCard'
+import { Video } from '@/models/Videos'
 
 const Home: React.FC = () => {
   const [refreshing, setRefreshing] = useState(false)
@@ -20,10 +22,10 @@ const Home: React.FC = () => {
   return (
     <SafeAreaView className="bg-primary border-2 h-full">
       <FlatList
-        data={[{ $id: 1 }, { $id: 2 }, { $id: 3 }]}
-        keyExtractor={(item: { $id: number }) => item.$id.toString()}
+        data={posts}
+        keyExtractor={(item) => item.$id.toString()}
         renderItem={({ item }) => (
-          <Text className='text-3xl text-white'>{item.$id}</Text>
+          <VideoCard videoItem={item as Video} />
         )}
         ListHeaderComponent={() => (
           <HomeHeader username="User" />
