@@ -10,10 +10,10 @@ import fetchData from '@/lib/fetchData'
 
 const Home: React.FC = () => {
   const [refreshing, setRefreshing] = useState(false)
-  const { data, isLoading } = fetchData(getAllPosts)
+  const { data: posts, isLoading, refetch } = fetchData(getAllPosts)
   const onRefresh = async () => {
     setRefreshing(true)
-    // logic for recalling
+    await refetch()
     setRefreshing(false)
   }
 
