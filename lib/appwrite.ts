@@ -88,3 +88,18 @@ export async function getCurrentUser() {
     throw new Error(String(error))
   }
 }
+
+export async function getAllPosts() {
+  try {
+    const posts = await databases.listDocuments(
+      config.databaseId,
+      config.videoCollectionId
+    )
+    if (!posts) {
+      throw new Error("Posts not found.")
+    }
+    return posts.documents
+  } catch (error) {
+    throw new Error(String(error))
+  }
+}
