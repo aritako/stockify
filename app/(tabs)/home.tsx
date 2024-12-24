@@ -27,8 +27,6 @@ const Home: React.FC = () => {
     fetchData();
   }, [])
 
-  console.log("Hello World!", data)
-
   const [refreshing, setRefreshing] = useState(false)
 
   const onRefresh = async () => {
