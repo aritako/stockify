@@ -1,22 +1,13 @@
 import { Client, Account, ID, Avatars, Databases, Query } from 'react-native-appwrite';
-
-export const config = {
-  endpoint: 'https://cloud.appwrite.io/v1',
-  platform: 'com.personal.stockify.android',
-  projectId: '6769173f00229e945ff0',
-  databaseId: '676918f60031040cf0e9',
-  userCollectionId: '676919a8002ec6522894',
-  videoCollectionId: '676919d10036e3fe7539',
-  storageId: '67691b7f00346c50b114'
-}
+import { endpoint, platform, projectId, databaseId, userCollectionId, videoCollectionId, storageId } from '../constants/appwrite_config';
 
 // Init your React Native SDK
 const client = new Client();
 
 client
-  .setEndpoint(config.endpoint) // Your Appwrite Endpoint
-  .setProject(config.projectId) // Your project ID
-  .setPlatform(config.platform) // Your application ID or bundle ID.
+  .setEndpoint(endpoint) // Your Appwrite Endpoint
+  .setProject(projectId) // Your project ID
+  .setPlatform(platform) // Your application ID or bundle ID.
   ;
 
 const account = new Account(client);
@@ -39,8 +30,8 @@ export async function createUser(email: string, password: string, username: stri
     await signIn(email, password)
 
     const newUser = await databases.createDocument(
-      config.databaseId,
-      config.userCollectionId,
+      databaseId,
+      userCollectionId,
       ID.unique(),
       {
         accountId: newAccount.$id,
@@ -75,8 +66,8 @@ export async function getCurrentUser() {
     }
 
     const currentUser = await databases.listDocuments(
-      config.databaseId,
-      config.userCollectionId,
+      databaseId,
+      userCollectionId,
       [Query.equal('accountId', currentAccount.$id)]
     )
     if (!currentUser) {
@@ -92,8 +83,8 @@ export async function getCurrentUser() {
 export async function getAllPosts() {
   try {
     const posts = await databases.listDocuments(
-      config.databaseId,
-      config.videoCollectionId
+      databaseId,
+      videoCollectionId
     )
     if (!posts) {
       throw new Error("Posts not found.")
