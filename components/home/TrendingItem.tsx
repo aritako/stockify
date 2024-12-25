@@ -1,27 +1,39 @@
 import { View, Text, TouchableOpacity, ImageBackground, Image, ListRenderItem } from 'react-native'
 import React, { useState } from 'react'
+import { useVideoPlayer, VideoView } from 'expo-video';
 
 import * as Animatable from 'react-native-animatable'
 import { zoomIn, zoomOut } from '@/constants/trending_config'
 import { icons } from '@/constants'
-import { Video } from '@/models/Videos'
+import { Video as VideoModel } from '@/models/Videos'
 
 interface TrendingItemProps {
   activeItem: string
-  item: Video
+  item: VideoModel
 }
 
 const TrendingItem: React.FC<TrendingItemProps> = ({ activeItem, item }) => {
   const [play, setPlay] = useState(false)
+  const player = useVideoPlayer(item.video, player => {
+    player.loop = true;
+    player.play();
+  });
   return (
     <Animatable.View
       className="mr-5"
       animation={activeItem === item.$id ? zoomIn : zoomOut}
       duration={300}
     >
-      {play ? (<Text className="text-white">
-        Playing
-      </Text>) : <TouchableOpacity className="relative justify-center items-center"
+      {play ? (
+        <VideoView
+          className="w-52 h-72 rounded-[35px] overflow-hidden overflow-hidden shadow-lg shadow-black/40"
+          player={player}
+          style={{ width: 200, height: 300, borderRadius: 35 }}
+          contentFit='cover'
+          nativeControls
+          showsTimecodes
+        />
+      ) : <TouchableOpacity className="relative justify-center items-center"
         activeOpacity={0.7}
         onPress={() => setPlay(true)}
       >
