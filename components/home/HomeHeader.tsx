@@ -40,7 +40,8 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ username = 'User' }) => {
       <Text className="text-gray-100 text-lg font-pregular mb-3">
         Latest Videos
       </Text>
-      <Trending posts={latestPosts as Video[] ?? []} />
+      {isLoading ? <Text>Loading...</Text> : <Trending posts={latestPosts as Video[] ?? []} />}
+
     </View>
   )
 }

@@ -1,22 +1,14 @@
-import { View, Text, TouchableOpacity, ImageBackground, Image } from 'react-native'
+import { View, Text, TouchableOpacity, ImageBackground, Image, ListRenderItem } from 'react-native'
 import React, { useState } from 'react'
 
 import * as Animatable from 'react-native-animatable'
 import { zoomIn, zoomOut } from '@/constants/trending_config'
 import { icons } from '@/constants'
+import { Video } from '@/models/Videos'
 
 interface TrendingItemProps {
-  activeItem: any
-  item: any
-}
-
-const sample = {
-  0: {
-    transform: [{ scale: 0.9 }],
-  },
-  1: {
-    transform: [{ scale: 1 }],
-  },
+  activeItem: string
+  item: Video
 }
 
 const TrendingItem: React.FC<TrendingItemProps> = ({ activeItem, item }) => {
