@@ -95,3 +95,19 @@ export async function getAllPosts(): Promise<Video[]> {
     throw new Error(String(error))
   }
 }
+
+export async function getLatestPosts(): Promise<Video[]> {
+  try {
+    const posts = await databases.listDocuments(
+      databaseId,
+      videoCollectionId,
+      [Query.orderDesc('$createdAt'), Query.limit(7)]
+    )
+    if (!posts) {
+      throw new Error("Posts not found.")
+    }
+    return posts.documents as Video[]
+  } catch (error) {
+    throw new Error(String(error))
+  }
+}
